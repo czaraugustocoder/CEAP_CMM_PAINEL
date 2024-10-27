@@ -66,15 +66,22 @@ if ((len(mes) != 0)):
     
 import locale
 
-# Configurar o locale para português do Brasil
-locale.setlocale(locale.LC_ALL, 'pt_BR')
+#função de conversão de float em moeda brasileira
+def format_pt_br(value):
+    # Converte o float para uma string formatada com duas casas decimais
+    formatted_value = f"{value:,.2f}"
+    
+    # Troca o separador decimal de ponto para vírgula e o separador de milhar de vírgula para ponto
+    formatted_value = formatted_value.replace(",", "X").replace(".", ",").replace("X", ".")
+    
+    return formatted_value
     
 tg_ceap = dados_dash['VALOR'].sum()
 cota_mensal = 33085.85
 
 # Formatar o valor como moeda brasileira
-tg_ceap_br = locale.currency(tg_ceap, grouping=True)
-cota_mensal_br = locale.currency(cota_mensal, grouping=True)
+tg_ceap_br = format_pt_br(tg_ceap)
+cota_mensal_br = format_pt_br(cota_mensal)
 
 qt_ver = len(dados_dash['VEREADOR'].unique().tolist())
 
@@ -129,7 +136,7 @@ dados_dash_resumo.index = dados_dash_resumo.index + 1
 
 dados_dash_resumo['FOTO'] = dados_dash_resumo['IMG_PATH'].apply(lambda x: image_to_html(x))
 
-dados_dash_resumo['VALOR TOTAL GASTO'] = dados_dash_resumo['VALOR'].apply(lambda x: locale.currency(x, grouping=True))
+dados_dash_resumo['VALOR TOTAL GASTO'] = dados_dash_resumo['VALOR'].apply(lambda x: format_pt_br(x))
 
 dados_dash_resumo = dados_dash_resumo[['FOTO','VEREADOR',"VALOR TOTAL GASTO"]]
 
