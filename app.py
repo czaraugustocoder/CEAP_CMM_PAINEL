@@ -67,7 +67,7 @@ if ((len(mes) != 0)):
 import locale
 
 # Configurar o locale para português do Brasil
-locale.setlocale(locale.LC_ALL, 'pt_BR.UTF-8')
+locale.setlocale(locale.LC_ALL, 'pt_BR')
     
 tg_ceap = dados_dash['VALOR'].sum()
 cota_mensal = 33085.85
