@@ -69,7 +69,7 @@ import locale
 #função de conversão de float em moeda brasileira
 def format_pt_br(value):
     # Converte o float para uma string formatada com duas casas decimais
-    formatted_value = f"{value:,.2f}"
+    formatted_value = f"R$ {value:,.2f}"
     
     # Troca o separador decimal de ponto para vírgula e o separador de milhar de vírgula para ponto
     formatted_value = formatted_value.replace(",", "X").replace(".", ",").replace("X", ".")
