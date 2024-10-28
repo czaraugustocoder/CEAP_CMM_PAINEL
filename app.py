@@ -11,7 +11,7 @@ import os
 from PIL import Image
 from io import BytesIO
 import base64
-from streamlit_gsheets import GSheetsConnection
+#from streamlit_gsheets import GSheetsConnection
 
 current_working_directory = os.getcwd()
 
@@ -103,7 +103,7 @@ fig_despesa = px.treemap(dados_dash,
 
 # Dados de exemplo
 labels = ['TOTAL GASTO', 'TOTAL ECONOMIZADO']
-values = [tg_ceap, (len(dados_dash_donut) * cota_mensal)]
+values = [tg_ceap, ((len(dados_dash_donut) * cota_mensal) - tg_ceap)]
 
 # Criando o gráfico de donut
 fig_total = go.Figure(data=[go.Pie(labels=labels, values=values, hole=0.4, marker=dict(colors=['#FF0000', '#0000e0']))])
